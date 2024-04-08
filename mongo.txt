@@ -1,0 +1,48 @@
+
+Basics commands :
+view all databases : show dbs 
+use datapase : use dbName
+view collections : show collections
+delete database : db.dropDatabase()
+create database : use dbName
+create a collection and insert one object: db.collectionName.insertOne({key:value})
+the database created when we insert data into the collection
+insert many documents : db.collectionName.insertMany([{key:value},{key:value}])
+
+
+
+retreiving data commands:
+retrieve all the collection objects : db.col.find()
+retrieve the two ones in collection : db.col.find.limit(2)
+retrieve document with sorting db.col.find.sort({key: 1})
+//in this command 1 means that we sort from smallest to bigest so we can use -1
+retrieve with key : db.col.find({key: vlaue})
+retreive specified columns : db.col.find({key: value}, {key:1, key:1})
+retrieve all columns except on column :db.col.find({key: value}, {key:0})
+
+
+
+complex commands:
+retrieve with key : db.col.find{key : {$eq:value}}
+retrieve all except the object that has the value of key : db.col.find{key : {$ne:value}}
+retrieve all document grater than key : db.col.find{key : {$gt:value}}, db.find{key : {$gte:value}}
+retrieve all document less than key : db.col.find{key : {$lt:value}}, db.find{key : {$lte:value}}
+retrieve according to array of values : db.col.find(key : {$in : [value, value, ....]})
+retrieve according to array of values (not in the array) : db.col.find(key : {$nin : [value, value, ....]})
+retrieve only the objects that have the key : db.col.find(key : {$exists : true})
+retrieve objects with or : db.col.find({$or : [{key: value}, {key: value}]})
+retreive with negatin : db.col.find($not : {$or : [{key: value}, {key: value}]})
+retreive acording to comparing propreties of objects : db.col.find({$expr : { $gt : ["$key", "$key"]}})
+
+
+
+update commands :
+update one objects with filtering : db.col.updateOne({filterKey: filterValue }, {$set : { key : value}})
+update by id : db.col.findByIdAndUpdate(id, {$set : object})
+add into an array : db.col.updateOne({filterKey : filterValue}, {$push : {arrayName : value}})
+update mayObjects : db.col.updateMany(key : {$exists : true }, {$set : { key : value}} )
+remove proprety from object : db.col.updateMany(key : {$exists : true }, {$unset : { key : ""}} )
+
+
+deleting commands:
+delete with filter key : db.col.deleteMany({key : {$exists : false}})
