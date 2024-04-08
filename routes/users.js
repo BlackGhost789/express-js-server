@@ -30,9 +30,13 @@ router.get('/update/:id', verifyTokenAuthorization, async (req, res) => {
 router.get('/delete/:id', verifyTokenAdmin, async (req, res) => {
     try {
         const user = await User.findById(req.params.id);
-        if(!user) res.status(404).send('user not found')
-        await User.deleteOne({'_id' : req.params.id}, {$exists : false})
-        res.status(200).send('user deleted')
+        if(!user){
+            res.status(404).send('user not found')
+        }else{
+            await User.deleteOne({'_id' : req.params.id}, {$exists : false})
+            res.status(200).send('user deleted')
+        }
+        
     } catch (error) {
         res.status(500).send(error)
     }
