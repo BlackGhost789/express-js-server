@@ -12,9 +12,10 @@ router.get('/login', async (req, res) => {
     const pwd =  cryptoJS.SHA256(req.query.password+"passkey").toString();
 
     const userdb = await User.findOne({'username' : uname, 'password' : pwd})
-            console.log('hii')
-
- 
+    console.log('hii')
+    console.log(pwd)
+    console.log(userdb)
+     
         if(userdb){
             console.log(userdb)
 
