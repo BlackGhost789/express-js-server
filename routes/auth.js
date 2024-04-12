@@ -9,7 +9,7 @@ const jwt = require('jsonwebtoken')
 
 router.get('/login', async (req, res) => {
     const uname = req.query.username;
-    const pwd =  cryptoJS.SHA256(req.query.password+"passkey").toString();
+    const pwd =  cryptoJS.SHA256(req.query.password+process.env.PWD_KEY).toString();
 
     const userdb = await User.findOne({'username' : uname, 'password' : pwd})
     console.log('hii')
