@@ -9,7 +9,7 @@ const jwt = require('jsonwebtoken')
 
 router.get('/login', async (req, res) => {
     const uname = req.query.username;
-    const pwd =  cryptoJS.SHA256(req.query.password+process.env.PWD_KEY).toString();
+    const pwd =  cryptoJS.SHA256(req.query.password+"passkey").toString();
 
     const userdb = await User.findOne({'username' : uname, 'password' : pwd})
             console.log('hii')
@@ -22,7 +22,7 @@ router.get('/login', async (req, res) => {
                 id: userdb._id,
                 isAdmin : userdb.isadmin,
             },
-            process.env.PWD_KEY,
+            "passkey",
             {expiresIn: "4d"});
             const {...data} = userdb._doc;
             res.status(200).json({...data, accessToken})
