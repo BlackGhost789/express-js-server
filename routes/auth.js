@@ -12,8 +12,9 @@ router.get('/login', async (req, res) => {
     const pwd =  cryptoJS.SHA256(req.query.password+process.env.PWD_KEY).toString();
 
     const userdb = await User.findOne({'username' : uname, 'password' : pwd})
+            console.log('hii')
+
     try {
-        console.log('hii')
         if(userdb){
 
             const accessToken = jwt.sign({
