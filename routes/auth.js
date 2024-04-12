@@ -17,13 +17,13 @@ router.get('/login', async (req, res) => {
     console.log(userdb)
      
         if(userdb){
-            console.log(userdb)
+            
 
             const accessToken = jwt.sign({
                 id: userdb._id,
                 isAdmin : userdb.isadmin,
             },
-            "passkey",
+            process.env.PWD_KEY,
             {expiresIn: "4d"});
             const {...data} = userdb._doc;
             res.status(200).json({...data, accessToken})
