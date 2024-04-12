@@ -14,7 +14,7 @@ router.get('/login', async (req, res) => {
     const userdb = await User.findOne({'username' : uname, 'password' : pwd})
             console.log('hii')
 
-    try {
+ 
         if(userdb){
 
             const accessToken = jwt.sign({
@@ -28,9 +28,7 @@ router.get('/login', async (req, res) => {
         }else{
             res.send({ msg : 'invalid informations'})
         }
-    } catch (error) {
-        res.status(500).json({'msg' : error})
-    }
+
 
 
 })
