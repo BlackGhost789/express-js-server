@@ -16,6 +16,7 @@ router.get('/login', async (req, res) => {
 
  
         if(userdb){
+            console.log(userdb)
 
             const accessToken = jwt.sign({
                 id: userdb._id,
