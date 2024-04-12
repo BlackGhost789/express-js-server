@@ -13,6 +13,7 @@ router.get('/login', async (req, res) => {
 
     const userdb = await User.findOne({'username' : uname, 'password' : pwd})
     try {
+        console.log('hii')
         if(userdb){
 
             const accessToken = jwt.sign({
